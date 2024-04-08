@@ -1,0 +1,87 @@
+body {
+    font-family: 'Poppins';font-size: 22px;
+    margin: 0;
+}
+
+main {
+    display: flex;
+    /* flex-wrap: wrap; */
+}
+
+.idea-box {
+    display: row;
+    background-color: #1F1F3C; 
+    color: white;
+    height: 100vh;
+    width: 20vw;
+    text-align: center;
+    margin: 0;
+    font-size: 50px;
+    /* border: 2px solid red */
+}
+
+.idea-box-form {
+    display: flex;
+    font-size: 12px;
+    width: 78vw;
+    height: 30vh;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #A8AAD2; 
+    /* border: 2px solid red;  */
+}
+
+div.title-box, div.body-box {
+    margin-left: 130px;
+    margin-bottom: 20px;
+}
+
+label.title, label.body {
+    font-size: 20px;
+    font-weight: 300;
+}
+input {
+    border:3px solid #1F1F3C;
+    width: 40rem; 
+    height: 2.5rem;
+    margin-left: 10px;
+    justify-content: center;
+    align-content: center;
+}
+
+input.user-body {
+    margin-left: 0;
+    height: 3.0rem; 
+}
+
+.save-button {
+    background-color: #1F1F3C;
+    font-size: 30px; 
+    color: white; 
+    width: 40rem;
+    height: 3.5rem; 
+    border: none;  
+    margin-left: 180px;
+}
+
+.saved-cards {
+    background-color: black;
+    /* border: 2px solid red; */
+    height: 70vh;
+    width: 78vw;
+    position: relative; 
+    
+}
+
+.saved-card-header {
+    z-index: 1;
+    font-size: 40px;
+    color: red;
+}
+
+
+.idea-box-form {
+    display: flex;
+    flex-direction: column;
+}
