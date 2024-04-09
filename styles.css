@@ -8,7 +8,7 @@ main {
     /* flex-wrap: wrap; */
 }
 
-.idea-box {
+.idea-box-grid {
     display: row;
     background-color: #1F1F3C; 
     color: white;
@@ -17,6 +17,10 @@ main {
     text-align: center;
     margin: 0;
     font-size: 50px;
+}
+
+.idea-box {
+    font-size: 50px;
     /* border: 2px solid red */
 }
 
@@ -24,7 +28,7 @@ main {
     display: flex;
     font-size: 12px;
     width: 78vw;
-    height: 30vh;
+    height: 25vh;
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
@@ -63,25 +67,41 @@ input.user-body {
     height: 3.5rem; 
     border: none;  
     margin-left: 180px;
+    cursor: pointer;
 }
-
+.save-button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
 .saved-cards {
-    background-color: black;
+    background-color:#EAEAF4;
     /* border: 2px solid red; */
     height: 70vh;
     width: 78vw;
-    position: relative; 
-    
+    display: grid;
 }
 
-.saved-card-header {
-    z-index: 1;
-    font-size: 40px;
-    color: red;
-}
-
-
-.idea-box-form {
+div.saved-card{
+    margin-left: 10px;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    border: 4px solid #1F1F3C;
+    background-color: white;
+    width: 200px;
+    height: 250px;
 }
+
+h4.saved-card-title {
+    text-align: center;
+    color: #1F1F3C;
+}
+
+p.saved-card-info {
+    text-align: center;
+    font-size: 25px;
+    flex-wrap: wrap;
+    font-weight: lighter;
+}
+
