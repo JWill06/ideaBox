@@ -69,17 +69,17 @@ input.user-body {
     margin-left: 180px;
     cursor: pointer;
 }
-
+.save-button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
 .saved-cards {
     background-color:#EAEAF4;
     /* border: 2px solid red; */
     height: 70vh;
     width: 78vw;
     display: grid;
-    
-    
 }
-
 
 div.saved-card{
     margin-left: 10px;
@@ -105,7 +105,3 @@ p.saved-card-info {
     font-weight: lighter;
 }
 
-/* .idea-box-form {
-    display: flex;
-    flex-direction: column;
-} */
