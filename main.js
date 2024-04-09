@@ -8,7 +8,9 @@ var userBody = document.querySelector('.user-body');
 var savedCardSection = document.querySelector('.saved-cards');
 var form = document.querySelector('.idea-box-form');
 var userInputs = document.querySelectorAll('input')
-
+var rectangle = document.querySelector('.rectangle');
+var savedCard = document.querySelector('.saved-card');
+var deleteButton = document.querySelector('.delete');
 
 
 
@@ -25,6 +27,8 @@ saveButton.addEventListener('click', function() {
 
 // saveButton.setAttribute('disabled', 'disabled');
 
+savedCardSection.addEventListener('click', deleteCards);
+
 
 userInputs[0].addEventListener('change', toggleButton)
 userInputs[1].addEventListener('change', toggleButton)
@@ -36,6 +40,10 @@ function displayUserCards(){
     for (var i = 0; i < savedCards.length; i++) {
         savedCardSection.innerHTML += `
         <div class="saved-card">
+            <div class="rectangle">
+                <img class="favorite" src="assets/star.svg" alt="star symbol">
+                <img class="delete" src="assets/delete.svg" alt="delete symbol">
+            </div>
           <h4 class="saved-card-title">${savedCards[i].title}</h4>
           <p class="saved-card-info">${savedCards[i].body}</p>         
         </div>`
@@ -43,14 +51,18 @@ function displayUserCards(){
 }
 
 function saveCards(){
-    event.preventDefault();
-    var cards = {
-        id: Date.now(),
-        title: userTitle.value,
-        body: userBody.value,
+    if (userTitle.value.length < 15) {
+        var cards = {
+            id: Date.now(),
+            title: userTitle.value,
+            body: userBody.value,
+        }
+        savedCards.push(cards);
+        displayUserCards();
     }
-    savedCards.push(cards);
-    displayUserCards();
+    else {
+        alert('Your title is too long.')
+    }
 }
 
 function clearForm () {
@@ -64,6 +76,16 @@ function toggleButton(){
     }
     else {
         saveButton.disabled = true;
+    }
+}
+
+function deleteCards(event){
+    event.preventDefault();
+    var index = event.target.parentElement.parentElement.id
+    console.log('line76:',index)
+    if (event.target.className === 'delete') {
+        event.target.parentElement.parentElement.remove();
+        savedCards.splice(index, 1);
     }
 }
 
