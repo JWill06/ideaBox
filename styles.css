@@ -100,7 +100,6 @@ h4.saved-card-title {
     text-align: center;
     color: #1F1F3C;
     max-height: 60px; /* sets max height for title*/
-    overflow: overlay;
     word-wrap: break-word; /* prevents horizontal scroll*/
 }
 
@@ -111,7 +110,7 @@ p.saved-card-info {
     font-weight: lighter;
     margin: 0;
     flex-grow: 1;
-    overflow: overlay;
+    overflow-y: auto;
     word-wrap: break-word;
 }
 
