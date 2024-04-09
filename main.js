@@ -19,25 +19,15 @@ saveButton.addEventListener('click', function(event){
     event.preventDefault();
     saveCards(userTitle.value, userBody.value);
     clearForm();
-    disabledButton()
+    toggleButton();
 }) 
 
 // saveButton.setAttribute('disabled', 'disabled');
 
 
 
-userTitle.addEventListener('input', disabledButton);
-userBody.addEventListener('input', disabledButton);
-
-
-
-
-
-
-
-
-
-
+userInputs[0].addEventListener('change', toggleButton)
+userInputs[1].addEventListener('change', toggleButton)
 
 // functions here
 // We need a function that can implement the user inputs into the html section and save them to the data model
@@ -67,10 +57,12 @@ function clearForm () {
     userBody.value = '';
 }
 
-function disabledButton(){
-if (document.querySelector("input").value === "") {
-    saveButton.disabled = true; //button remains disabled
-} else {
-    saveButton.disabled = false; //button is enabled
+function toggleButton(){
+    if (userTitle.value && userBody.value) {
+        saveButton.disabled = false;
+    }
+    else {
+        saveButton.disabled = true;
+    }
 }
-}
+
