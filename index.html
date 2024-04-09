@@ -8,7 +8,7 @@
 </head>
 <body>
     <main>
-        <section>
+        <section class="idea-box-grid">
             <h1 class="idea-box">IdeaBox</h1>
         </section>
         <section class="form-wrapper">
@@ -21,13 +21,17 @@
                     <label class="body">Body</label>
                     <input type="text" class="user-body">
                 </div>
-                <button class="save-button">Save</button>
+                <button class="save-button" disabled>Save</button>
             </form>
             <section class="saved-cards">
-                <h1 class="saved-card-header">SAVED GRID HERE</h1>
+                <!-- <h1 class="saved-card-header">SAVED GRID HERE</h1> -->
+                <div class="saved-card">
+                    <h4 class="saved-card-title">Dog Staches</h3>
+                    <p class="saved-card-info">Dogs should have mustaches! They'd be so cute and regal!</p>
+                </div>
             </section>
          </section>
     </main>
-    <script src="./src/main.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
