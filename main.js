@@ -15,15 +15,15 @@ var userInputs = document.querySelectorAll('input')
 
 
 // event listeners here
-saveButton.addEventListener('click', function(event){
-    event.preventDefault();
-    saveCards(userTitle.value, userBody.value);
+saveButton.addEventListener('click', function() {
+    savedCardSection.innerHTML = "";
+    saveCards();
     clearForm();
     toggleButton();
-}) 
+})
+
 
 // saveButton.setAttribute('disabled', 'disabled');
-
 
 
 userInputs[0].addEventListener('change', toggleButton)
@@ -32,24 +32,25 @@ userInputs[1].addEventListener('change', toggleButton)
 // functions here
 // We need a function that can implement the user inputs into the html section and save them to the data model
 
-function displayUserCards (){
-    savedCards.forEach(function(cards){
-    savedCardSection.innerHTML += 
-    `<div class="saved-card">
-           <h4 class="saved-card-title">${cards.title}</h4>
-           <p class="saved-card-info">${cards.body}</p>         
-    </div>`
-    })
+function displayUserCards(){
+    for (var i = 0; i < savedCards.length; i++) {
+        savedCardSection.innerHTML += `
+        <div class="saved-card">
+          <h4 class="saved-card-title">${savedCards[i].title}</h4>
+          <p class="saved-card-info">${savedCards[i].body}</p>         
+        </div>`
+    }
 }
 
-function saveCards(userTitle, userBody){
-        var cards = {
-            id: Date.now(),
-            title: userTitle,
-            body: userBody,
-        }
-        savedCards.push(cards);
-        displayUserCards()
+function saveCards(){
+    event.preventDefault();
+    var cards = {
+        id: Date.now(),
+        title: userTitle.value,
+        body: userBody.value,
+    }
+    savedCards.push(cards);
+    displayUserCards();
 }
 
 function clearForm () {
