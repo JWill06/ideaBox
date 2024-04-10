@@ -1,7 +1,4 @@
-// variables 
 var savedCards = []
-
-// query selectors here 
 var saveButton = document.querySelector('.save-button');
 var userTitle = document.querySelector('.user-title');
 var userBody = document.querySelector('.user-body');
@@ -12,28 +9,49 @@ var rectangle = document.querySelector('.rectangle');
 var savedCard = document.querySelector('.saved-card');
 var deleteButton = document.querySelector('.delete');
 var parentWrapper = document.querySelector('.form-wrapper')
+var showFavoriteButton = document.querySelector("#toggle-ideas")
 
-
-
-
-// event listeners here
 saveButton.addEventListener('click', function() {
     savedCardSection.innerHTML = "";
+    showFavoriteButton.classList.remove('hidden')
     saveCards();
     clearForm();
     toggleButton();
 })
-
+showFavoriteButton.addEventListener('click', function() {
+    savedCardSection.innerHTML = "";
+    if (showFavoriteButton.innerText === "Show All Ideas") {
+        displayUserCards();
+    } 
+    else {
+    filterIdeas();
+    }
+})
 
 savedCardSection.addEventListener('click', deleteCards);
 parentWrapper.addEventListener('click', favoriteCards);
 
-
 userInputs[0].addEventListener('change', toggleButton)
 userInputs[1].addEventListener('change', toggleButton)
 
-// functions here
-// We need a function that can implement the user inputs into the html section and save them to the data model
+function filterIdeas() {
+    for (var i = 0; i < savedCards.length; i++) {
+        if (savedCards[i].isFavorite === true) {
+            savedCardSection.innerHTML += `
+            <div class="saved-card">
+                <div class="rectangle">
+                    <img class="${savedCards[i].isFavorite}" src="${savedCards[i].src}" alt="star symbol" id=${i}>
+                    <img class="delete" src="assets/delete.svg" alt="delete symbol">
+                </div>
+                <h4 class="saved-card-title">${savedCards[i].title}</h4>
+                <p class="saved-card-info">${savedCards[i].body}</p>         
+            </div>`
+        }  
+    }
+    showFavoriteButton.innerText = "Show All Ideas"
+    showFavoriteButton.className = "show-all"
+}
+
 function favoriteCards(e) {
     if (e.target.className === 'false') {
     savedCards[e.target.id]['isFavorite'] = true;
@@ -59,7 +77,7 @@ function displayUserCards(){
             </div>
           <h4 class="saved-card-title">${savedCards[i].title}</h4>
           <p class="saved-card-info">${savedCards[i].body}</p>         
-        </div>`
+        </div>`     
     }
 }
 
