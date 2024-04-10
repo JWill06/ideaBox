@@ -16,6 +16,7 @@ var parentWrapper = document.querySelector('.form-wrapper')
 
 
 
+
 // event listeners here
 saveButton.addEventListener('click', function() {
     savedCardSection.innerHTML = "";
@@ -24,10 +25,20 @@ saveButton.addEventListener('click', function() {
     toggleButton();
 })
 
+favoriteButton.forEach(function(notFavorited){
+    notFavorited.addEventListener('click', function (event){
+    event.preventDefault()
+    favoriteIcon(notFavorited);
+    });
+});
+
 
 savedCardSection.addEventListener('click', deleteCards);
 parentWrapper.addEventListener('click', favoriteCards);
 
+
+savedCardSection.addEventListener('click', deleteCards);
+// savedCardSection.addEventListener('click', favoriteCards)
 
 userInputs[0].addEventListener('change', toggleButton)
 userInputs[1].addEventListener('change', toggleButton)
@@ -49,19 +60,23 @@ function favoriteCards(e) {
     }
 }
 
-function displayUserCards(){
-    for (var i = 0; i < savedCards.length; i++) {
-        savedCardSection.innerHTML += `
-        <div class="saved-card">
+function displayUserCards() {
+    for(var i = 0; i < savedCards.length; i++){
+    savedCardSection.innerHTML += `
+        <div class="saved-card" data-index="${index}">
             <div class="rectangle">
+
                 <img class="${savedCards[i].isFavorite}" src="${savedCards[i].src}" alt="star symbol" id=${i}>
+
                 <img class="delete" src="assets/delete.svg" alt="delete symbol">
             </div>
-          <h4 class="saved-card-title">${savedCards[i].title}</h4>
-          <p class="saved-card-info">${savedCards[i].body}</p>         
-        </div>`
+          <h4 class="saved-card-title">${card.title}</h4>
+          <p class="saved-card-info">${card.body}</p>         
+        </div>`;
     }
 }
+
+
 
 function saveCards(){
     if (userTitle.value.length < 15) {
@@ -71,6 +86,7 @@ function saveCards(){
             body: userBody.value,
             isFavorite: false,
             src: "assets/star.svg"
+
         }
         savedCards.push(cards);
         displayUserCards();
@@ -95,12 +111,21 @@ function toggleButton(){
     }
 }
 
+function displayFavoritedCards() {
+    var favoritedCards = savedCards.filter(function(card) {
+        return card.isFavorite;
+    });
+    savedCards = favoritedCards; 
+    displayUserCards(); 
+}
+
+
 function deleteCards(event){
     event.preventDefault();
     var index = event.target.parentElement.parentElement.id
+
     if (event.target.className === 'delete') {
         event.target.parentElement.parentElement.remove();
         savedCards.splice(index, 1);
     }
 }
-
