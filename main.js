@@ -30,7 +30,7 @@ showFavoriteButton.addEventListener('click', function() {
 
 savedCardSection.addEventListener('click', deleteCards);
 parentWrapper.addEventListener('click', favoriteCards);
-
+savedCardSection.addEventListener('click', deleteCards);
 userInputs[0].addEventListener('change', toggleButton)
 userInputs[1].addEventListener('change', toggleButton)
 
@@ -67,10 +67,10 @@ function favoriteCards(e) {
     }
 }
 
-function displayUserCards(){
-    for (var i = 0; i < savedCards.length; i++) {
-        savedCardSection.innerHTML += `
-        <div class="saved-card">
+function displayUserCards() {
+    for(var i = 0; i < savedCards.length; i++){
+    savedCardSection.innerHTML += `
+        <div class="saved-card" data-index="${index}">
             <div class="rectangle">
                 <img class="${savedCards[i].isFavorite}" src="${savedCards[i].src}" alt="star symbol" id=${i}>
                 <img class="delete" src="assets/delete.svg" alt="delete symbol">
@@ -89,6 +89,7 @@ function saveCards(){
             body: userBody.value,
             isFavorite: false,
             src: "assets/star.svg"
+
         }
         savedCards.push(cards);
         displayUserCards();
@@ -116,9 +117,9 @@ function toggleButton(){
 function deleteCards(event){
     event.preventDefault();
     var index = event.target.parentElement.parentElement.id
+
     if (event.target.className === 'delete') {
         event.target.parentElement.parentElement.remove();
         savedCards.splice(index, 1);
     }
 }
-
