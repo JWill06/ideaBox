@@ -11,7 +11,7 @@ var userInputs = document.querySelectorAll('input')
 var rectangle = document.querySelector('.rectangle');
 var savedCard = document.querySelector('.saved-card');
 var deleteButton = document.querySelector('.delete');
-var favoriteButton = document.querySelectorAll('.notFavorited')
+var parentWrapper = document.querySelector('.form-wrapper')
 
 
 
@@ -33,6 +33,8 @@ favoriteButton.forEach(function(notFavorited){
 });
 
 
+savedCardSection.addEventListener('click', deleteCards);
+parentWrapper.addEventListener('click', favoriteCards);
 
 
 savedCardSection.addEventListener('click', deleteCards);
@@ -43,45 +45,36 @@ userInputs[1].addEventListener('change', toggleButton)
 
 // functions here
 // We need a function that can implement the user inputs into the html section and save them to the data model
+function favoriteCards(e) {
+    if (e.target.className === 'false') {
+    savedCards[e.target.id]['isFavorite'] = true;
+    savedCards[e.target.id]['src'] = "assets/star-active.svg"
+    e.target.className = 'true'
+    e.target.src ="assets/star-active.svg"
+    }
+    else if (e.target.className === 'true') {
+    savedCards[e.target.id]['isFavorite'] = false;
+    savedCards[e.target.id]['src'] = "assets/star.svg"
+    e.target.className = 'false'
+    e.target.src ="assets/star.svg"
+    }
+}
 
 function displayUserCards() {
-    savedCardSection.innerHTML = ''; // Clear the section before adding new cards
-    savedCards.forEach(function(card, index) {
-        // Determine the favorite icon based on the isFavorite property
-        var favoriteIconSrc = card.isFavorite ? 'assets/star-active.svg' : 'assets/star.svg';
-
-        // Create the card HTML
-        var cardHTML = `
+    for(var i = 0; i < savedCards.length; i++){
+    savedCardSection.innerHTML += `
         <div class="saved-card" data-index="${index}">
             <div class="rectangle">
-                <img class="notFavorited" src="${favoriteIconSrc}" alt="star symbol">
+
+                <img class="${savedCards[i].isFavorite}" src="${savedCards[i].src}" alt="star symbol" id=${i}>
+
                 <img class="delete" src="assets/delete.svg" alt="delete symbol">
             </div>
           <h4 class="saved-card-title">${card.title}</h4>
           <p class="saved-card-info">${card.body}</p>         
         </div>`;
-
-        // Add the card HTML to the savedCardSection
-        savedCardSection.innerHTML += cardHTML;
-    });
-
-    // Attach the event listeners to the favorite buttons of the newly added cards
-    attachFavoriteButtonListeners();
+    }
 }
-
-function attachFavoriteButtonListeners() {
-    var favoriteButtons = document.querySelectorAll('.notFavorited');
-    favoriteButtons.forEach(function(button, index) {
-        button.addEventListener('click', function(event) {
-            event.preventDefault();
-            favoriteIcon(button);
-            // Update the card's favorite status in the savedCards array
-            var cardIndex = button.closest('.saved-card').dataset.index;
-            savedCards[cardIndex].isFavorite = !savedCards[cardIndex].isFavorite; // Toggle the favorite status
-        });
-    });
-}
-
 
 
 
@@ -92,12 +85,15 @@ function saveCards(){
             title: userTitle.value,
             body: userBody.value,
             isFavorite: false,
+            src: "assets/star.svg"
+
         }
         savedCards.push(cards);
         displayUserCards();
     }
     else {
         alert('Your title is too long.')
+        displayUserCards();
     }
 }
 
@@ -126,26 +122,10 @@ function displayFavoritedCards() {
 
 function deleteCards(event){
     event.preventDefault();
-    var index = event.target.parentElement.parentElement.id;
-    console.log('line76:',index)
+    var index = event.target.parentElement.parentElement.id
+
     if (event.target.className === 'delete') {
         event.target.parentElement.parentElement.remove();
         savedCards.splice(index, 1);
     }
-}
-
-
-function favoriteIcon(notFavorited) {
-    var currentIcon = notFavorited.getAttribute('src');
-    var newIcon;
-
-    if(currentIcon === 'assets/star.svg'){
-        newIcon = 'assets/star-active.svg';
-        savedCards.isFavorite = true;
-    } else {
-        newIcon = 'assets/star.svg'
-        savedCards.isFavorite = false;
-    }
-
-    notFavorited.setAttribute('src', newIcon)
 }
