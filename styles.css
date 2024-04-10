@@ -6,8 +6,7 @@ body {
 
 main {
   display: flex;
-  /* flex-wrap: wrap; */
-}
+ }
 
 .idea-box-grid {
   display: row;
@@ -22,7 +21,15 @@ main {
 
 .idea-box {
   font-size: 50px;
-  /* border: 2px solid red */
+ }
+
+.show-starred-ideas,
+.show-all {
+  background-color: #A8AAD2;
+  font-size: 20px; 
+  width: 12rem;
+  height: 4rem; 
+  border: none;
 }
 
 .idea-box-form {
@@ -34,8 +41,7 @@ main {
   flex-direction: column;
   justify-content: center;
   background-color: #a8aad2;
-  /* border: 2px solid red;  */
-}
+ }
 
 div.title-box,
 div.body-box {
@@ -50,6 +56,7 @@ label.body {
   font-size: 20px;
   font-weight: 300;
 }
+
 input {
   border: 3px solid #1f1f3c;
   width: 40rem;
@@ -129,7 +136,7 @@ img {
   height: 100%;
 }
 
-.notFavorited {
+.false, .true {
   margin-right: 95px;
   cursor: pointer;
 }
@@ -139,7 +146,6 @@ img {
   cursor: pointer;
 }
 
-.favorited {
-  margin-right: 95px;
-  cursor: pointer;
+.hidden {
+  display: none;
 }
