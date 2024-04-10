@@ -22,6 +22,8 @@ showFavoriteButton.addEventListener('click', function() {
     savedCardSection.innerHTML = "";
     if (showFavoriteButton.innerText === "Show All Ideas") {
         displayUserCards();
+        showFavoriteButton.className = "show-starred-ideas"
+        showFavoriteButton.innerText = 'Show Starred Ideas'
     } 
     else {
     filterIdeas();
