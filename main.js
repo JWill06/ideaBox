@@ -11,7 +11,7 @@ var userInputs = document.querySelectorAll('input')
 var rectangle = document.querySelector('.rectangle');
 var savedCard = document.querySelector('.saved-card');
 var deleteButton = document.querySelector('.delete');
-
+var parentWrapper = document.querySelector('.form-wrapper')
 
 
 
@@ -25,9 +25,8 @@ saveButton.addEventListener('click', function() {
 })
 
 
-// saveButton.setAttribute('disabled', 'disabled');
-
 savedCardSection.addEventListener('click', deleteCards);
+parentWrapper.addEventListener('click', favoriteCards);
 
 
 userInputs[0].addEventListener('change', toggleButton)
@@ -35,13 +34,27 @@ userInputs[1].addEventListener('change', toggleButton)
 
 // functions here
 // We need a function that can implement the user inputs into the html section and save them to the data model
+function favoriteCards(e) {
+    if (e.target.className === 'false') {
+    savedCards[e.target.id]['isFavorite'] = true;
+    savedCards[e.target.id]['src'] = "assets/star-active.svg"
+    e.target.className = 'true'
+    e.target.src ="assets/star-active.svg"
+    }
+    else if (e.target.className === 'true') {
+    savedCards[e.target.id]['isFavorite'] = false;
+    savedCards[e.target.id]['src'] = "assets/star.svg"
+    e.target.className = 'false'
+    e.target.src ="assets/star.svg"
+    }
+}
 
 function displayUserCards(){
     for (var i = 0; i < savedCards.length; i++) {
         savedCardSection.innerHTML += `
         <div class="saved-card">
             <div class="rectangle">
-                <img class="favorite" src="assets/star.svg" alt="star symbol">
+                <img class="${savedCards[i].isFavorite}" src="${savedCards[i].src}" alt="star symbol" id=${i}>
                 <img class="delete" src="assets/delete.svg" alt="delete symbol">
             </div>
           <h4 class="saved-card-title">${savedCards[i].title}</h4>
@@ -56,12 +69,15 @@ function saveCards(){
             id: Date.now(),
             title: userTitle.value,
             body: userBody.value,
+            isFavorite: false,
+            src: "assets/star.svg"
         }
         savedCards.push(cards);
         displayUserCards();
     }
     else {
         alert('Your title is too long.')
+        displayUserCards();
     }
 }
 
@@ -82,7 +98,6 @@ function toggleButton(){
 function deleteCards(event){
     event.preventDefault();
     var index = event.target.parentElement.parentElement.id
-    console.log('line76:',index)
     if (event.target.className === 'delete') {
         event.target.parentElement.parentElement.remove();
         savedCards.splice(index, 1);
