@@ -25,6 +25,15 @@ main {
   /* border: 2px solid red */
 }
 
+.show-starred-ideas,
+.show-all {
+  background-color: #A8AAD2;
+  font-size: 20px; 
+  width: 12rem;
+  height: 4rem; 
+  border: none;
+}
+
 .idea-box-form {
   display: flex;
   font-size: 12px;
@@ -129,10 +138,14 @@ img {
   height: 100%;
 }
 
-.favorite {
+.false, .true {
   margin-right: 95px;
 }
 
 .delete {
   margin-left: 14px;
+}
+
+.hidden {
+  display: none;
 }
