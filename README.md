@@ -16,10 +16,10 @@ We used HTML and CSS to build an application that matches a provided comp. When 
 We are in Module 1 and completed this project in 10 hours.
 
 ### Contributors
-Marshall Hotaling https://github.com/marshallhotaling
-Kim Ewing: https://github.com/kiewi16 
-Peter Kim: https://github.com/peterkimpk1
-Jordan Williamson: https://github.com/JWill06
+* Marshall Hotaling https://github.com/marshallhotaling
+* Kim Ewing: https://github.com/kiewi16 
+* Peter Kim: https://github.com/peterkimpk1
+* Jordan Williamson: https://github.com/JWill06
 
 ### Learning Goals:
 * Write clean HTML and CSS to match a provided comp
