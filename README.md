@@ -31,7 +31,8 @@ We are in Module 1 and completed this project in 10 hours.
 *Wins*
   1. Changes to the DOM generally occur after our Data Model has been updated. Our Data Model is used to update the DOM.
   2. All team members understand the code that has been written.
-  3. Created an efficient collaborative environment that allowed each team member to provide input and contribute code. 
+  3. Created an efficient collaborative environment that allowed each team member to provide input and contribute code.
+
 *Challenges*
   1. We experienced an issue in deleting the entire card. At first, only the card header was being deleted. We resolved this issue by targeting the grandparent element of the card. 
   2. When a card was favorited, our Data Model did not update. We resolved this issue by creating default key value pairs for our card object. We created a function with conditional statements to change the necessary key value pairs.
