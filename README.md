@@ -11,6 +11,7 @@ We used HTML and CSS to build an application that matches a provided comp. When 
 5. Run open index.html in your terminal to open the application
 
 ### Preview of App:
+![Screenshot 2024-04-11 at 3 40 16 PM](https://github.com/JWill06/ideaBox/assets/127267694/4ea78b45-dec0-4536-9060-24df38fda895)
 
 ### Context:
 We are in Module 1 and completed this project in 10 hours.
