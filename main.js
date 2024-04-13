@@ -4,10 +4,6 @@ var userTitle = document.querySelector('.user-title');
 var userBody = document.querySelector('.user-body');
 var savedCardSection = document.querySelector('.saved-cards');
 var form = document.querySelector('.idea-box-form');
-var userInputs = document.querySelectorAll('input')
-var rectangle = document.querySelector('.rectangle');
-var savedCard = document.querySelector('.saved-card');
-var deleteButton = document.querySelector('.delete');
 var parentWrapper = document.querySelector('.form-wrapper')
 var showFavoriteButton = document.querySelector("#toggle-ideas")
 
@@ -18,6 +14,7 @@ saveButton.addEventListener('click', function() {
     clearForm();
     toggleButton();
 })
+
 showFavoriteButton.addEventListener('click', function() {
     savedCardSection.innerHTML = "";
     if (showFavoriteButton.innerText === "Show All Ideas") {
@@ -32,10 +29,7 @@ showFavoriteButton.addEventListener('click', function() {
 
 savedCardSection.addEventListener('click', deleteCards);
 parentWrapper.addEventListener('click', favoriteCards);
-// savedCardSection.addEventListener('click', deleteCards);
-
-userInputs[0].addEventListener('change', toggleButton)
-userInputs[1].addEventListener('change', toggleButton)
+form.addEventListener('change', toggleButton)
 
 function filterIdeas() {
     for (var i = 0; i < savedCards.length; i++) {
@@ -92,15 +86,13 @@ function saveCards(){
             body: userBody.value,
             isFavorite: false,
             src: "assets/star.svg"
-
         }
         savedCards.push(cards);
-        displayUserCards();
     }
     else {
         alert('Your title is too long.')
-        displayUserCards();
     }
+    displayUserCards();
 }
 
 function clearForm () {
@@ -120,7 +112,6 @@ function toggleButton(){
 function deleteCards(event){
     event.preventDefault();
     var index = event.target.parentElement.parentElement.id
-
     if (event.target.className === 'delete') {
         event.target.parentElement.parentElement.remove();
         savedCards.splice(index, 1);
