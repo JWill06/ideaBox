@@ -87,7 +87,6 @@ input.user-body {
 }
 .saved-cards {
   background-color: #eaeaf4;
-  /* border: 2px solid red; */
   display: grid;
   grid-template-columns: repeat(auto-fit, 250px);
   grid-gap: 20px;
